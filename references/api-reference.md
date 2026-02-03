@@ -23,6 +23,15 @@ Query params:
 - `status` — OPEN, CLOSED, RESOLVING, RESOLVED
 - `creator_username` — filter by creator
 
+**⚠️ PAGINATION:** Response is paginated. Access markets via `.data[]`:
+```bash
+# ✅ Correct
+curl -s "$API/markets" | jq '.data[]'
+
+# ❌ Wrong (will fail)
+curl -s "$API/markets" | jq '.[] | select(...)'
+```
+
 Response:
 ```json
 {
@@ -159,13 +168,21 @@ Returns all bets by a user across all markets.
 
 ### Oracle Data (External)
 
-#### Binance Klines (Crypto Prices)
+#### CoinGecko (Primary — no geo-restrictions)
+```
+GET https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana&vs_currencies=usd
+```
+
+Response: `{ "bitcoin": { "usd": 75000 }, "ethereum": { "usd": 2500 }, "solana": { "usd": 100 } }`
+
+#### Binance Klines (Fallback — may be geo-blocked)
 ```
 GET https://api.binance.com/api/v3/klines?symbol=BTCUSDT&interval=1m&startTime={ms}&limit=1
 ```
 
 Response: `[[openTime, open, high, low, close, volume, ...]]`
 - Use index `[0][4]` for close price
+- ⚠️ Returns geo-restriction error from US servers
 
 #### HN Algolia (Story Points)
 ```
