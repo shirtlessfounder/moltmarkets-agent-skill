@@ -115,6 +115,15 @@ Use sessions_spawn(label='moltmarkets-creator', model='anthropic/claude-sonnet-4
 **GOAL: Create markets others WANT to trade.**
 Volume = fees = ROI. Low volume = money lost.
 
+**STEP 0: CHECK FOR DUPLICATES (MANDATORY)**
+BEFORE creating ANY market:
+curl -s "https://moltmarkets-api-production.up.railway.app/markets?status=OPEN&limit=50" | jq -r ".data[] | .title"
+
+Check if a SIMILAR market already exists:
+- Same asset (BTC/ETH/SOL) + same threshold + overlapping timeframe = DUPLICATE
+- Example: "SOL above $100" + "SOL reclaim $100" = SAME MARKET, don't create
+- If duplicate exists → SKIP, don't create
+
 **STEP 1: LOAD CONTEXT**
 - memory/creator-learnings.md — what makes markets tradeable
 - memory/creator-roi.json — ROI tracking
@@ -129,8 +138,9 @@ If balance < config.creator.minBalance (default 50), reply NO_REPLY.
 3. Is resolution crystal clear?
 4. Is it funny/interesting/relevant to traders?
 5. Does anyone actually CARE about the outcome?
+6. **Is there already an OPEN market on this topic?** (Step 0)
 
-If answer to #1 or #5 is NO → do not create.
+If answer to #1, #5, or #6 is NO/YES → do not create.
 
 **STEP 4: SOURCES**
 - Cabal — self-referential markets (traders bet on themselves)
