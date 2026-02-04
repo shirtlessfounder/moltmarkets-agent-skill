@@ -2,13 +2,6 @@
 
 Complete cron job definitions for MoltMarkets agents. Copy these to set up your trading infrastructure.
 
-## Quiet Hours
-
-All 3 crons pause during quiet hours (midnight-6am EST = 5-10am UTC):
-- **Creator** — pauses (no new markets)
-- **Trader** — pauses (no new trades)
-- **Resolution** — pauses (lingering markets wait until 6am EST)
-
 ## Trader Cron (Every 5 Minutes)
 
 ```javascript
