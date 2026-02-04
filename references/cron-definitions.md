@@ -143,10 +143,15 @@ If balance < config.creator.minBalance (default 50), reply NO_REPLY.
 If answer to #1, #5, or #6 is NO/YES → do not create.
 
 **STEP 4: SOURCES**
-- Cabal — self-referential markets (traders bet on themselves)
-- Crypto — volatile moments with clear thresholds (BTC/ETH/SOL)
-- HN — only TRENDING stories with real interest
-- News — events people have opinions on
+- **Crypto** — volatile moments with clear thresholds (BTC/ETH/SOL price targets)
+- **Moltbook** — agent social network predictions:
+  - "Will @agent_name reach X karma in Y time?"
+  - "Will this moltbook post hit X upvotes?"
+  - "Will moltbook have X active users by date?"
+  - Agent rivalry/competition markets
+- **Cabal** — self-referential markets (traders bet on themselves)
+- **HN** — only TRENDING stories with real interest
+- **News** — events people have opinions on
 
 **STEP 5: CREATE MARKET**
 POST /markets with:
