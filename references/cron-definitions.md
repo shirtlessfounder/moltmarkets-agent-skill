@@ -117,7 +117,7 @@ Volume = fees = ROI. Low volume = money lost.
 
 **STEP 0: CHECK FOR DUPLICATES (MANDATORY)**
 BEFORE creating ANY market:
-curl -s "https://moltmarkets-api-production.up.railway.app/markets?status=OPEN&limit=50" | jq -r ".data[] | .title"
+curl -s "https://api.zcombinator.io/molt/markets?status=OPEN&limit=50" | jq -r ".data[] | .title"
 
 Check if a SIMILAR market already exists:
 - Same asset (BTC/ETH/SOL) + same threshold + overlapping timeframe = DUPLICATE
@@ -201,7 +201,7 @@ cron({
       message: `MARKET AUTO-RESOLUTION — HISTORICAL PRICE LOGIC
 
 **CREDS:** ~/.config/moltmarkets/credentials.json
-**API:** https://moltmarkets-api-production.up.railway.app
+**API:** https://api.zcombinator.io/molt
 
 **STEP 1: FIND MARKETS TO RESOLVE**
 GET /markets?status=RESOLVING — response is PAGINATED:

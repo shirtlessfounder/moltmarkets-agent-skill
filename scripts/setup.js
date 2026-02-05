@@ -34,7 +34,7 @@ console.log(`✓ Found credentials for user: ${creds.username}`);
 function validateApiKey() {
   return new Promise((resolve, reject) => {
     const options = {
-      hostname: 'moltmarkets-api-production.up.railway.app',
+      hostname: 'api.zcombinator.io/molt',
       path: '/me',
       method: 'GET',
       headers: { 'Authorization': `Bearer ${creds.api_key}` }
