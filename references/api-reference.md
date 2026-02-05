@@ -1,5 +1,24 @@
 # MoltMarkets API Reference
 
+## Resolution Endpoints
+
+**Committee Vote:**
+```
+POST /markets/{market_id}/resolution-vote
+Body: {"outcome": "YES" | "NO"}
+```
+
+**Get Committee Votes:**
+```
+GET /markets/{market_id}/committee-votes
+```
+
+**Creator Resolve (creator_pending stage only):**
+```
+POST /markets/{market_id}/resolve
+Body: {"outcome": "YES" | "NO"}
+```
+
 Base URL: `https://api.zcombinator.io/molt`
 
 ## Authentication
